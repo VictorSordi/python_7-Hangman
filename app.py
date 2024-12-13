@@ -1,75 +1,11 @@
 import random
+import hangman_art
+import hangman_words
 
-stages = ['''
- _______
- |/    |
- |    (_)
- |    \|/
- |    / \
- |
-_|___
-======
-''', '''
- _______
- |/    |
- |    (_)
- |    \|/
- |    /
- |
-_|___
-======
-''', '''
- _______
- |/    |
- |    (_)
- |    \|/
- |
- |
-_|___
-======
-''', '''
- _______
- |/    |
- |    (_)
- |    \|
- |
- |
-_|___
-======
-''', '''
- _______
- |/    |
- |    (_)
- |    \
- |
- |
-_|___
-======
-''', '''
- _______
- |/    |
- |    (_)
- |
- |
- |
-_|___
-======
-''', '''
- _______
- |/    |
- |
- |
- |
- |
-_|___
-======
-''']
-
-word_list = ["aardvark", "baboon", "camel", "apple"]
 
 lives = 6
-
-chosen_word = random.choice(word_list)
+print(hangman_art.logo[0])
+chosen_word = random.choice(hangman_words.word_list)
 print(chosen_word)
 
 placeholder = ""
@@ -81,7 +17,7 @@ print(placeholder)
 
 game_over = False
 correct_letters = []
-
+tries = []
 
 while not game_over:
     guess = input("Choose a letter: ").lower()
@@ -96,29 +32,32 @@ while not game_over:
             display += letter
         else:
             display += "_"
-    print(display)
+    print("Word to guess:" + display)
     print("\n")
+
+    if tries == guess:
+        print("You typed this letter already!")
 
     if guess not in chosen_word:
         lives -= 1
         if lives == 6:
-            print(stages[6])
+            print(hangman_art.stages[6])
         elif lives == 5:
-            print(stages[5])
+            print(hangman_art.stages[5])
         elif lives == 4:
-            print(stages[4])
+            print(hangman_art.stages[4])
         elif lives == 3:
-            print(stages[3])
+            print(hangman_art.stages[3])
         elif lives == 2:
-            print(stages[2])
+            print(hangman_art.stages[2])
         elif lives == 1:
-            print(stages[1])
+            print(hangman_art.stages[1])
         elif lives == 0:
             game_over = True
-            print(stages[0])
-            print("You Loose")
+            print(hangman_art.stages[0])
+            print("********** You Lose! **********")
         print(f"lives = {lives}")
 
     elif "_" not in display:
         game_over = True
-        print("You Win!")
+        print("********** You Win! **********")
