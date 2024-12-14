@@ -61,6 +61,7 @@ while not game_over:
             game_over = True
             print(hangman_art.stages[0])
             print("********** You Lose! **********")
+            print(f"The word was {chosen_word}")
         print(f"lives = {lives}")
 
     elif "_" not in display:
